@@ -4,7 +4,7 @@
 # The output location is in Pal/Saved/Config/<Windows|Linux>Server/PalWorldSettings.ini.
 # The transpilation must be in CRLF (Windows) format even if the server build is Linux
 
-import sys, io, os, shutil
+import sys, io, os, shutil, configparser
 
 def osname():
   match sys.platform:
@@ -17,10 +17,11 @@ OS = osname()
 PALWORLD_SETTINGS_FILENAME = "PalWorldSettings.ini"
 PALWORLD_SETTINGS_DESTINATION = f"Pal/Saved/Config/{OS}Server/PalWorldSettings.ini"
 TMP_FILENAME = 'tmpfile'
+CONFIG_FILE = "config.ini"
 
-# replace with path to PalServer
-# eg. "C:\ProgramFiles\Steam\steamapps\common\PalServer" or "/home/steam/Steam/SteamApps/common/PalServer"
-PALSERVER_PATH = "C:\Intricate Installation\Steam\steamapps\common\PalServer"
+config = configparser.ConfigParser()
+config.read(CONFIG_FILE)
+PALSERVER_PATH = config["SERVER_FILES"]["Path"]
 
 with open(PALWORLD_SETTINGS_FILENAME, "r") as f:
   lines = f.read().splitlines()
