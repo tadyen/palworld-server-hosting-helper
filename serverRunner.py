@@ -3,7 +3,11 @@
 # Runs the palworld server into a subprocess
 # Periodically checks the subprocess if it's alive. Restarts the subprocess if it's dead
 
-import subprocess, configparser, os, time
+import subprocess, configparser, os, time, argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--debug', dest='debug', required=False, default=False, action="store_true", type=bool)
+args = parser.parse_args()
 
 CONFIG_FILE = "config.ini"
 
@@ -30,12 +34,14 @@ while True:
     print("getting server")
     time.sleep(10)
 
-  # print(f'server: {server}')
-  # print(f'poll: {server.poll()}')
-  # print(f'returncode: {server.returncode}')
+  if args.debug:
+    print(f'server: {server}')
+    print(f'poll: {server.poll()}')
+    print(f'returncode: {server.returncode}')
+
   if server.returncode is not None:
     print("restart")
     server = get_server()
-  # else:
-    # print("sleep10")
+  else:
+    if args.debug: print("sleep10")
   time.sleep(10)
