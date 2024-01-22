@@ -30,7 +30,10 @@ while True:
     print("getting server")
     time.sleep(10)
 
-  if not server.poll():
+  print(f'server: {server}')
+  print(f'poll: {server.poll()}')
+  print(f'returncode: {server.returncode}')
+  if not server.returncode:
     print("restart")
     server = get_server()
   else:
