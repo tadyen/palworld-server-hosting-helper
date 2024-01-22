@@ -22,15 +22,12 @@ exec_path = os.path.normpath(exec_path)
 def get_server():
   return subprocess.Popen(f"exec {exec_path}", shell=True)
 
-s = {
-  "server": None
-}
-
+server = None
 while True:
-  if not s or s.server.poll():
-    s.server = get_server()
+  if not server or server.poll():
+    server = get_server()
     print("restart")
-    print(s)
+    print(server)
   else:
     print("sleep10")
     time.sleep(10)
