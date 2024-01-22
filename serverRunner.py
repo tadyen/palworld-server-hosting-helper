@@ -24,11 +24,7 @@ def get_server():
 
 server = get_server()
 while True:
-  if server.poll():
+  if not server.poll():
     server = get_server()
-    print("restart")
-    print(server)
   else:
-    print("sleep10")
-    print(server.poll())
     time.sleep(10)
