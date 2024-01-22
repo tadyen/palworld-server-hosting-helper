@@ -18,10 +18,10 @@ exec_path = os.path.join(
   PALSERVER_EXEC_FILENAME
 )
 exec_path = os.path.normpath(exec_path)
-# exec_path = os.path.normpath("asdf.sh")
+# exec_path = os.path.normpath("./asdf.sh")
 
 def get_server():
-  return subprocess.Popen(f"exec ./{exec_path}", shell=True)
+  return subprocess.Popen(f"exec {exec_path}", shell=True)
 
 server = None
 while True:
