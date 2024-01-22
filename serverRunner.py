@@ -20,7 +20,7 @@ exec_path = os.path.join(
 exec_path = os.path.normpath(exec_path)
 
 def get_server():
-  return subprocess.Popen("exec", exec_path, shell=True)
+  return subprocess.Popen(f"exec {exec_path}", shell=True)
 
 server = None
 
