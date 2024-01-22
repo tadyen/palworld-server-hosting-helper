@@ -18,7 +18,7 @@ exec_path = os.path.join(
   PALSERVER_EXEC_FILENAME
 )
 exec_path = os.path.normpath(exec_path)
-# exec_path = os.path.normpath("./asdf.sh")
+# exec_path = os.path.abspath("./asdf.sh")
 
 def get_server():
   return subprocess.Popen(f"exec {exec_path}", shell=True)
@@ -28,11 +28,11 @@ while True:
   if not server:
     server = get_server()
     print("getting server")
+    time.sleep(10)
+
+  if not server.poll():
+    print("restart")
+    server = get_server()
   else:
-    if not server.poll():
-      print("restart")
-      server = get_server()
-    else:
-      print("sleep10")
-  print(server)
+    print("sleep10")
   time.sleep(10)
