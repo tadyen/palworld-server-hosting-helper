@@ -6,7 +6,7 @@
 import subprocess, configparser, os, time, argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--debug', dest='debug', required=False, default=False, action="store_true", type=bool)
+parser.add_argument('--debug', dest='debug', required=False, default=False, action="store_true")
 args = parser.parse_args()
 
 CONFIG_FILE = "config.ini"
