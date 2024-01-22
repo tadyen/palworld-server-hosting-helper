@@ -30,4 +30,5 @@ while True:
     print(server)
   else:
     print("sleep10")
+    print(server.poll())
     time.sleep(10)
