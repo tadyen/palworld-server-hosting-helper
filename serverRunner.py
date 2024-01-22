@@ -33,7 +33,7 @@ while True:
   print(f'server: {server}')
   print(f'poll: {server.poll()}')
   print(f'returncode: {server.returncode}')
-  if not server.returncode:
+  if server.returncode is not None:
     print("restart")
     server = get_server()
   else:
