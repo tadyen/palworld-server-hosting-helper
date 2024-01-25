@@ -39,9 +39,10 @@ while True:
     print(f'poll: {server.poll()}')
     print(f'returncode: {server.returncode}')
 
-  if server.returncode is not None:
+  if server.returncode is not None or server.poll() is not None:
     print("restart")
     server = get_server()
   else:
     if args.debug: print("sleep10")
+    pass
   time.sleep(10)
